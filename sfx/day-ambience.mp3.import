@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/day-ambience.mp3-f688605e17e1bdf9f64e6e5a18a09ae0.mp3str"
+
+[deps]
+
+source_file="res://sfx/day-ambience.mp3"
+dest_files=[ "res://.import/day-ambience.mp3-f688605e17e1bdf9f64e6e5a18a09ae0.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

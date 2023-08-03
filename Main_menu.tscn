@@ -1,0 +1,193 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Font/AgencyFB-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Font/Agency FB Bold.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Main_menu.gd" type="Script" id=3]
+[ext_resource path="res://music/a-birb-10226.mp3" type="AudioStream" id=5]
+[ext_resource path="res://Level/MainMenu_Background.tscn" type="PackedScene" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 70
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Fade_In"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -5.0, -80.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -5.0 ]
+}
+
+[node name="MainMenu" type="Node"]
+script = ExtResource( 3 )
+
+[node name="Background" type="ColorRect" parent="."]
+visible = false
+margin_left = -13.0
+margin_top = 3.24493
+margin_right = 1856.0
+margin_bottom = 1242.24
+color = Color( 0.054902, 0, 0.305882, 1 )
+
+[node name="MenuContent" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -418.5
+margin_right = 418.5
+margin_bottom = 448.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuContent"]
+margin_right = 837.0
+margin_bottom = 329.0
+custom_constants/margin_top = 65
+custom_constants/margin_bottom = 184
+
+[node name="Title" type="Label" parent="MenuContent/MarginContainer"]
+margin_left = 162.0
+margin_top = 65.0
+margin_right = 675.0
+margin_bottom = 145.0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 1 )
+text = "HUNTING BIRD FLU 2D"
+
+[node name="MenuSelection" type="VBoxContainer" parent="MenuContent"]
+margin_top = 333.0
+margin_right = 837.0
+margin_bottom = 581.0
+
+[node name="StartGame" type="TextureButton" parent="MenuContent/MenuSelection"]
+margin_left = 212.0
+margin_right = 624.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 412, 80 )
+size_flags_horizontal = 4
+action_mode = 0
+
+[node name="Label" type="Label" parent="MenuContent/MenuSelection/StartGame"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -115.5
+margin_right = 115.5
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 2 )
+text = "START GAME"
+
+[node name="HowToPlay" type="TextureButton" parent="MenuContent/MenuSelection"]
+margin_left = 212.0
+margin_top = 84.0
+margin_right = 624.0
+margin_bottom = 164.0
+rect_min_size = Vector2( 412, 80 )
+size_flags_horizontal = 4
+action_mode = 0
+
+[node name="Label" type="Label" parent="MenuContent/MenuSelection/HowToPlay"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -124.5
+margin_top = 4.48984
+margin_right = 125.5
+margin_bottom = 4.48984
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 2 )
+text = "HOW TO PLAY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitGame" type="TextureButton" parent="MenuContent/MenuSelection"]
+margin_left = 212.0
+margin_top = 168.0
+margin_right = 624.0
+margin_bottom = 248.0
+rect_min_size = Vector2( 412, 80 )
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="MenuContent/MenuSelection/ExitGame"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -96.5
+margin_right = 96.5
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 2 )
+text = "EXIT GAME"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu_Background" parent="." instance=ExtResource( 6 )]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -5.0
+autoplay = true
+
+[node name="MainMenu_SpawnBurung" type="ReferenceRect" parent="."]
+margin_left = -84.2932
+margin_top = 54.0
+margin_right = -37.2928
+margin_bottom = 590.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Fade_In = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+
+[connection signal="pressed" from="MenuContent/MenuSelection/StartGame" to="." method="_on_StartGame_pressed"]
+[connection signal="pressed" from="MenuContent/MenuSelection/HowToPlay" to="." method="_on_HowToPlay_pressed"]
+[connection signal="pressed" from="MenuContent/MenuSelection/ExitGame" to="." method="_on_ExitGame_pressed"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/chill-ambient-11322.mp3-f843e9398080d7ad82c07e949c8a53b3.mp3str"
+
+[deps]
+
+source_file="res://music/chill-ambient-11322.mp3"
+dest_files=[ "res://.import/chill-ambient-11322.mp3-f843e9398080d7ad82c07e949c8a53b3.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

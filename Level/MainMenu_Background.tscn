@@ -1,0 +1,91 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Level/MainMenu_Background.gd" type="Script" id=1]
+[ext_resource path="res://assets/background.png" type="Texture" id=2]
+[ext_resource path="res://Level/cloud.gd" type="Script" id=8]
+[ext_resource path="res://assets/Cloud_2.png" type="Texture" id=9]
+[ext_resource path="res://assets/Cloud_3.png" type="Texture" id=10]
+[ext_resource path="res://assets/Cloud.png" type="Texture" id=11]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 500 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 4
+glow_enabled = true
+glow_intensity = 1.2
+
+[node name="MainMenu_Background" type="Node2D"]
+scale = Vector2( 1.00466, 1.03789 )
+script = ExtResource( 1 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2( 0, -1.8189 )
+z_index = 4096
+
+[node name="Cloud" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Cloud"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Cloud/ParallaxBackground"]
+color = Color( 0.764706, 0.764706, 0.764706, 1 )
+
+[node name="Sprite" type="Sprite" parent="Cloud/ParallaxBackground"]
+position = Vector2( 640, 320 )
+scale = Vector2( 1.00466, 1.03789 )
+texture = ExtResource( 2 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Cloud/ParallaxBackground"]
+motion_mirroring = Vector2( 3737, 0 )
+script = ExtResource( 8 )
+
+[node name="Cloud" type="Sprite" parent="Cloud/ParallaxBackground/ParallaxLayer"]
+position = Vector2( 418.548, -88.2563 )
+scale = Vector2( 0.499932, 0.499933 )
+texture = ExtResource( 11 )
+
+[node name="Cloud_2" type="Sprite" parent="Cloud/ParallaxBackground/ParallaxLayer"]
+position = Vector2( 2251.36, 438.394 )
+scale = Vector2( 0.541586, 0.541586 )
+texture = ExtResource( 9 )
+
+[node name="Cloud_3" type="Sprite" parent="Cloud/ParallaxBackground/ParallaxLayer"]
+position = Vector2( 616.691, 771.486 )
+scale = Vector2( 0.713222, 0.713222 )
+texture = ExtResource( 10 )
+
+[node name="Spawn_Burung_Area1" type="ReferenceRect" parent="."]
+margin_left = 1348.03
+margin_top = 56.7252
+margin_right = 1395.03
+margin_bottom = 592.725
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spawn_Burung_Area2" type="ReferenceRect" parent="."]
+margin_left = -84.2932
+margin_top = 54.0
+margin_right = -37.2928
+margin_bottom = 590.0
+
+[node name="SpawnTimer_Sehat" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( -335.097, 373.889 )
+
+[node name="Burung_Hilang1" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 152.291, 0 )
+shape = SubResource( 1 )
+
+[node name="Burung_Hilang2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 1855.67, -12.5986 )
+shape = SubResource( 1 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[connection signal="timeout" from="SpawnTimer_Sehat" to="." method="_on_SpawnTimer_Sehat_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

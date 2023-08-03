@@ -1,0 +1,51 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/burung_sakit_animation1.png" type="Texture" id=1]
+[ext_resource path="res://assets/burung_sakit_animation5.png" type="Texture" id=2]
+[ext_resource path="res://assets/burung_sakit_animation6.png" type="Texture" id=3]
+[ext_resource path="res://assets/burung_sakit_animation4.png" type="Texture" id=4]
+[ext_resource path="res://assets/burung_sakit_animation3.png" type="Texture" id=5]
+[ext_resource path="res://assets/burung_sakit_animation7.png" type="Texture" id=6]
+[ext_resource path="res://assets/burung_sakit_animation8.png" type="Texture" id=7]
+[ext_resource path="res://assets/burung_sakit_animation2.png" type="Texture" id=8]
+[ext_resource path="res://Level/Burung.gd" type="Script" id=9]
+[ext_resource path="res://assets/burung_mati.png" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "mati",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "terbang",
+"speed": 20.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 24.5
+
+[node name="Burung_Sakit" type="KinematicBody2D" groups=["burung sakit"]]
+script = ExtResource( 9 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+modulate = Color( 0.407843, 0.913725, 0.356863, 1 )
+scale = Vector2( 0.2, 0.2 )
+frames = SubResource( 1 )
+animation = "terbang"
+frame = 2
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["collision burung"]]
+scale = Vector2( 0.99, 0.59 )
+shape = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
